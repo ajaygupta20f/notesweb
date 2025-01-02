@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = 'http://localhost:8000/api/notes';
+const API_URL = 'https://notesweb-bice.vercel.app/api/notes';
 
 // Fetch all notes
 export const fetchNotes = async () => {
