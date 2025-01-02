@@ -8,12 +8,8 @@ const noteRoutes = require('./routes/noteRoutes');
 dotenv.config();
 
 const app = express();
+app.use(cors());
 
-app.use(cors({
-  origin: '*', // Allow all origins (use specific domains in production)
-  methods: ['GET', 'POST', 'PUT', 'DELETE'], // Allowed HTTP methods
-  allowedHeaders: ['Content-Type', 'Authorization'], // Allowed headers
-}));
 app.use(bodyParser.json());
 
 app.use('/api/notes', noteRoutes);
