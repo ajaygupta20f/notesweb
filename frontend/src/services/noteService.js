@@ -1,34 +1,46 @@
 import axios from 'axios';
+import toast from 'react-hot-toast';
 
-const API_URL = 'http://localhost:8000/api/notes';
+const API_URL = 'https://notesweb-xe78.onrender.com/api/notes';
 
 // Fetch all notes
 export const fetchNotes = async () => {
-  const response = await axios.get(API_URL);
-  return response.data;
+  try {
+    const response = await axios.get(API_URL);
+    // toast.success('Notes fetched successfully!');
+    return response.data;
+  } catch (error) {
+    toast.error('Failed to fetch notes.');
+    console.error('Error fetching notes:', error);
+    throw error;
+  }
 };
 
 // Add a new note
 export const addNote = async ({ title, description }) => {
-    const response = await fetch(API_URL, {
-      method: 'POST',
+  try {
+    const response = await axios.post(API_URL, { title, description }, {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ title, description }),
     });
-  
-    if (!response.ok) {
-      const error = await response.json();
-      console.log("err",error)
-      throw new Error(error.message || 'Failed to add note');
-    }
-  
-    return response.json();
-  };
-  
+    toast.success('Note added successfully!');
+    return response.data;
+  } catch (error) {
+    toast.error('Failed to add note.');
+    console.error('Error adding note:', error.response?.data || error.message);
+    throw error;
+  }
+};
 
 // Delete a note by ID
 export const deleteNote = async (id) => {
-  await axios.delete(`${API_URL}/${id}`);
+  try {
+    await axios.delete(`${API_URL}/${id}`);
+    toast.success('Note deleted successfully!');
+  } catch (error) {
+    toast.error('Failed to delete note.');
+    console.error('Error deleting note:', error.response?.data || error.message);
+    throw error;
+  }
 };

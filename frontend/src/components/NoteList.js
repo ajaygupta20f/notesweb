@@ -3,18 +3,15 @@ import { MdDelete } from "react-icons/md";
 
 function NoteList({ notes, onDelete }) {
   return (
-    <div  className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 p-4">
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 p-4 items-start">
       {notes.map((note) => (
         <div
           key={note.id}
-          style={{ width: '300px' }} // Width is fixed, height is dynamic
-          
-          className="bg-white p-4 rounded-lg shadow-lg border border-gray-300 flex flex-col"
+          className="w-[300px] bg-white p-4 h-auto rounded-lg shadow-lg border border-gray-300 flex flex-col"
         >
-          <div  >
+          <div>
             <h2 className="text-lg font-bold mb-2">{note.title}</h2>
-            <p 
-            className="text-gray-700 mb-4 break-words" >{note.description}</p> {/* Dynamic height based on this */}
+            <p className="text-gray-700 mb-4 break-words">{note.description}</p>
           </div>
           <div className="mt-auto flex justify-between items-end">
             <p className="text-gray-500 text-sm">{note.dateAndTime}</p>

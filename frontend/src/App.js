@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { fetchNotes, addNote, deleteNote } from './services/noteService';
 import NoteList from './components/NoteList';
+import { Toaster } from 'react-hot-toast';
 
 function App() {
   const [notes, setNotes] = useState([]);
@@ -43,6 +44,7 @@ function App() {
 
   return (
     <div className="min-h-screen bg-teal-400 flex flex-col items-center">
+      <Toaster/>
       <div className="text-4xl font-semibold text-left mb-8 text-white bg-black w-full ">
        <h1 className="text-4xl font-semibold text-left mb-8 text-white bg-black w-full p-3 ">☰ Notes</h1></div>
       <div className="w-full max-w-7xl p-4">
